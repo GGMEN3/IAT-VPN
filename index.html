@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureVPN — Личный кабинет</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Настройки для PWA и iOS -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SecureVPN">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="logo">⚡ SecureVPN</div>
+            <div class="status-badge active" id="connectionStatus">Активен</div>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="content">
+            <!-- Блок статуса подписки -->
+            <section class="card status-card">
+                <h2>Ваша подписка</h2>
+                <div class="timer" id="daysLeft">Осталось: 14 дней</div>
+                <p class="sub-text">Тариф: «Безлимит 30 дней»</p>
+            </section>
+
+            <!-- Блок выбора тарифов для продления -->
+            <section class="card">
+                <h3>Продлить подписку</h3>
+                <div class="tariffs">
+                    <label class="tariff-item selected">
+                        <input type="radio" name="tariff" checked>
+                        <div class="tariff-info">
+                            <span class="tariff-name">1 месяц</span>
+                            <span class="tariff-price">299 ₽</span>
+                        </div>
+                    </label>
+                    <label class="tariff-item">
+                        <input type="radio" name="tariff">
+                        <div class="tariff-info">
+                            <span class="tariff-name">3 месяца (-15%)</span>
+                            <span class="tariff-price">760 ₽</span>
+                        </div>
+                    </label>
+                    <label class="tariff-item">
+                        <input type="radio" name="tariff">
+                        <div class="tariff-info">
+                            <span class="tariff-name">Год (-40%)</span>
+                            <span class="tariff-price">2150 ₽</span>
+                        </div>
+                    </label>
+                </div>
+
+                <button class="pay-btn" onclick="handlePay()">Оплатить продление</button>
+            </section>
+
+            <!-- Ключ подключения -->
+            <section class="card">
+                <h3>Ваш ключ доступа</h3>
+                <div class="key-box">
+                    <input type="text" value="vless://sec-vpn-key-9f83b1...2026" readonly id="keyInput">
+                    <button class="copy-btn" onclick="copyKey()">Копировать</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function copyKey() {
+            const input = document.getElementById('keyInput');
+            input.select();
+            navigator.clipboard.writeText(input.value);
+            alert('Ключ скопирован в буфер обмена!');
+        }
+
+        function handlePay() {
+            alert('Перенаправление на безопасный шлюз оплаты (СБП / Карты)...');
+        }
+    </script>
+</body>
+</html>
